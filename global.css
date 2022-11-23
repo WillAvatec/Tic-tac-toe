@@ -6,9 +6,11 @@
     height: 50vw;
     min-height: 300px;
     max-height: 500px;
+    border-radius: 80px;
     background-color: rgb(223, 223, 39);
     display: flex;
     flex-direction: column;
+    pointer-events: none;
 }
 
 .row {
@@ -30,6 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
 }
 
 .col:not(:last-child){
@@ -39,5 +42,4 @@
 .col:hover {
     cursor: pointer;
     background-color: rgb(177, 177, 20);
-
 }
