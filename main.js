@@ -1,12 +1,28 @@
 const gameBoard = (()=>{
 
     const pattern = [
-        ["","",""],
-        ["","",""],
-        ["","",""]
+        ["X","",""],
+        ["","X",""],
+        ["","","X"]
 ];
 
-})()
+    const gameBoard = document.querySelector('.gameboard');
+
+    // Renderize the pattern 
+
+    const renderBoard = (function(){
+        for (let i = 0; i < pattern.length; i++) {
+            const row = pattern[i];
+                console.log(row) 
+            for(let j = 0; j < row.length; j++){
+                const col_value = row[j];
+                console.log({col_value});
+            }
+        }
+}
+)()
+}
+)()
 
 let choice;
 
