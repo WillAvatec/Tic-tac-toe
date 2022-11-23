@@ -24,7 +24,7 @@ const pickTurn = (()=>{
         button.addEventListener("click",()=>{
                 console.log({button});
                 choice = button.textContent;
-                console.log({choice})
+                console.log({choice});
         }
     ,false)
     })
@@ -38,7 +38,9 @@ const PlayerFactory = (type)=>{
 
     // Player should choose a cell and put an "X" or "O"
 
-    // Player 
+    // Player should check if he's win
+
+    // If he has win then render 'span' than declares winner 
 
     return {type}
 }
