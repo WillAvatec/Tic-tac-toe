@@ -10,7 +10,7 @@ const gameBoard = (()=>{
 
     // Renderize the pattern 
 
-    const renderBoard = (function(){
+    const renderBoard = function(){
         for (let i = 0; i < pattern.length; i++) {
             const row = pattern[i];
                 console.log(row) 
@@ -19,10 +19,8 @@ const gameBoard = (()=>{
                 console.log({col_value});
             }
         }
-}
-)()
-}
-)()
+    }
+})()
 
 let choice;
 
