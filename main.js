@@ -1,13 +1,12 @@
 const gameBoard = (()=>{
 
-    // Maybe be a Type error here down
-    const gameBoard = [
-        ["","",""]
-        ["","",""]
+    const pattern = [
+        ["","",""],
+        ["","",""],
         ["","",""]
 ];
-    // Maybe a Type error up here
-})
+
+})()
 
 let choice;
 
