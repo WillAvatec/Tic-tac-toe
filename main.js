@@ -66,13 +66,15 @@ const game = (()=>{
     
     function renderSymbol(e){
         e.target.textContent = data.symbol;
-        if(data.symbol == "X") data.symbol = "O";
-        else if(data.symbol == "O") data.symbol = "X";
+
+        data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
+/*         if(data.symbol == "X") data.symbol = "O";
+        else if(data.symbol == "O") data.symbol = "X"; */
         checkWin(e);
     }
 
     function checkWin(e){
-        let col = e.target.id;
+        let box = e.target.id;
         
     }
 
