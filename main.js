@@ -1,28 +1,30 @@
 const gameBoard = (()=>{
 
     const pattern = [
-        ["X","O","O"],
-        ["O","X","O"],
-        ["O","O","X"]
+        "","","",
+        "","","",
+        "","",""
     ];
 
-    const rows = document.querySelectorAll('.row');
-    const ROW_1 = document.querySelectorAll('.row > .col');
-    const ROW_2 = document.querySelectorAll('.second-row > .col');
-    const ROW_3 = document.querySelectorAll('.third-row > .col');
+    const cols = document.querySelectorAll('.col');
+
     // --- Renderize the pattern 
 
     /* Se debe hacer lo siguiente:
     
-        1) Se ingresa en un ROW
-        2) Se guarda el valor del patron
+        1) Iterar por el patron
+        2) Se guarda el valor del valor iterado en ese momento
         3) Escribe ese valor en la columna 
 
     */
 
-    const renderBoard = function(){
+    const renderBoardFromArray = (function(){
 
-    }
+        for (let i = 0; i < pattern.length; i++) {
+            const element = pattern[i];
+            cols[i].textContent = element;
+        }
+    })()
 
 })()
 
