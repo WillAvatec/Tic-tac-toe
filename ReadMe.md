@@ -4,4 +4,4 @@ This project is meant to let you exercise with:
     2) Module Pattern 
     3) Closure [This one seems important]
 
-Live Session :
+Live Session : https://willavatec.github.io/tic-tac-toe/
