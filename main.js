@@ -42,7 +42,7 @@ const game = (()=>{
         button.addEventListener("click",(ev)=>{
             let id = ev.target.id;
             decideContricant(id);
-            console.log(data.gameOver)
+            console.log(data.contrincant)
         })
     })
 
@@ -68,6 +68,12 @@ const game = (()=>{
         e.target.textContent = data.symbol;
         if(data.symbol == "X") data.symbol = "O";
         else if(data.symbol == "O") data.symbol = "X";
+        checkWin(e);
+    }
+
+    function checkWin(e){
+        let col = e.target.id;
+        
     }
 
     const winningCombos = [
