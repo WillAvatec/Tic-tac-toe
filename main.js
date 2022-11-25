@@ -77,7 +77,7 @@ const game = (()=>{
     const playMove = (e)=>{
         if (data.gameOver) return;
         renderOnGameBoard(e)
-        changePlayer(data)
+        changePlayer(data,e)
         checkWin(data);
     }
 
@@ -91,17 +91,39 @@ const game = (()=>{
 
     // Cambiar jugador por turno
 
-    function changePlayer(data){
+    function changePlayer(data,e){
         if (data.contrincant === "Human"){
             data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
         }
 
-        if (data.contrincant === "")
+        if (data.contrincant === "EasyAi"){
+            computerMove(data,e);
+        }
 
         ++data.turn;
     }
 
+    function computerMove(data){
+        let mode = data.contrincant;
 
+        if (mode == "EasyAi"){
+            EasyAi();
+        }
+
+        if (mode == "HardAi"){
+            return console.log("Ai choosed...");
+        }
+    }
+
+    const EasyAi = ()=>{
+        let computerChoice = Math.floor(Math.random() * 9);
+        while(data.board[computerChoice] == "X" && data.board[computerChoice] == "O"){
+            computerChoice = Math.floor(Math.random() * 9);
+        }
+        data.board.splice(computerChoice,1,"O");
+        cols[computerChoice].textContent = "O";
+        
+    }
 
 
     // Comparar valores de cada condicion con las condiciones de WIN
