@@ -77,8 +77,8 @@ const game = (()=>{
     const playMove = (e)=>{
         if (data.gameOver) return;
         renderOnGameBoard(e)
-        changePlayer(data,e)
         checkWin(data);
+        changePlayer(data,e)
     }
 
     //Renderizar
@@ -116,13 +116,34 @@ const game = (()=>{
     }
 
     const EasyAi = ()=>{
-        let computerChoice = Math.floor(Math.random() * 9);
-        while(data.board[computerChoice] == "X" && data.board[computerChoice] == "O"){
-            computerChoice = Math.floor(Math.random() * 9);
+        const chooseRandom = () => {
+            let value = Math.floor(Math.random() * 9);
+            return value;
         }
-        data.board.splice(computerChoice,1,"O");
-        cols[computerChoice].textContent = "O";
+
+        let AiChoice = chooseRandom();
+
+/*         while(data.board[AiChoice] == "X" && data.board[AiChoice] == "O"){
+            AiChoice = chooseRandom();
+        }
+        if(data.board[AiChoice] != "X" && data.board[AiChoice] != "O"){
+            data.board.splice(AiChoice,1,"O");
+            cols[AiChoice].textContent = "O";
+        } */
         
+
+        // Compare all data.board values with aichoice, if it finds it replace it and render on page.
+
+        data.board.forEach((value)=>{
+            if(value === AiChoice){
+                data.board.splice(AiChoice,1,"O");
+                cols[AiChoice].textContent = "O";
+            }
+            else if(value !== AiChoice){
+                return
+            }
+        })
+
     }
 
 
@@ -135,7 +156,7 @@ const game = (()=>{
         winningCombos.forEach(condition=>{
             if(data.board[condition[0]] === data.board[condition[1]] && 
                 data.board[condition[1]] === data.board[condition[2]]){
-                console.log("win");
+                console.log(`player ${data.symbol} has won.`);
                 result = true;
                 data.gameOver = true;
             }
