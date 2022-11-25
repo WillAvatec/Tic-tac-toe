@@ -18,7 +18,7 @@
 
 const game = (()=>{
 
-    const buttons = document.querySelectorAll('button');
+    // Datos del juego
 
     const data = (() => {
 
@@ -27,16 +27,21 @@ const game = (()=>{
         const contrincant = "Human";
         const turn = 0;
         const symbol = "X";
+        const board = [0,1,2,3,4,5,6,7,8];
 
         return {
             gameStart,
             gameOver,
             contrincant,
             turn,
-            symbol
+            symbol,
+            board
         }
     })()
 
+    // Decidir el oponente
+
+    const buttons = document.querySelectorAll('button');
 
     buttons.forEach(button =>{
         button.addEventListener("click",(ev)=>{
@@ -60,23 +65,36 @@ const game = (()=>{
             if(!data.gameStart) return console.log("Select your rival.");
             if(!col.textContent=="") return console.log("you already clicked in this cell");
             renderSymbol(e);
+            console.log(data.board);
             ++data.turn;
         });
     })
     
     function renderSymbol(e){
-        e.target.textContent = data.symbol;
-
-        data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
-/*         if(data.symbol == "X") data.symbol = "O";
-        else if(data.symbol == "O") data.symbol = "X"; */
-        checkWin(e);
+        if(!data.gameOver){
+            e.target.textContent = data.symbol;
+            let id = e.target.id;
+            data.board.splice(id,1,data.symbol);
+            data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
+            checkWin(data);
+        }
     }
 
-    function checkWin(e){
-        let box = e.target.id;
-        
+    // Comparar valores de cada condicion con los arrays
+
+    const checkWin = (data)=>{
+        let result = false;
+        winningCombos.forEach(condition=>{
+            if(data.board[condition[0]] === data.board[condition[1]] && data.board[condition[1]] === data.board[condition[2]]){
+                console.log("win");
+                result = true;
+                data.gameOver = true;
+            }
+        })
+
+        return result;
     }
+
 
     const winningCombos = [
         [0,1,2],
