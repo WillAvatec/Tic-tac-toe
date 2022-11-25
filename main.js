@@ -4,11 +4,11 @@
 
     En general:
 
-    1) Se escoge si van a jugar dos personas o una persona contra la maquina
+    1) Se escoge si van a jugar dos personas o una persona contra la maquina  --DONE
 
-    2) El primer jugador recibe la "X" y el segundo la "O"
+    2) El primer jugador recibe la "X" y el segundo la "O"  -- DONE
 
-    3) Se determina que el juego acabo, si se forma un 3 en raya
+    3) Se determina que el juego acabo, si se forma un 3 en raya -- DONE
 
     4) Al acabar el juego, se debe mostrar quien gano la ronda
 
@@ -58,34 +58,61 @@ const game = (()=>{
         data.gameStart = true;
     }
 
+    // Event Listener a todas las columnas
+
     const cols = document.querySelectorAll('.col');
 
     cols.forEach((col)=>{
         col.addEventListener("click",(e)=> {
             if(!data.gameStart) return console.log("Select your rival.");
             if(!col.textContent=="") return console.log("you already clicked in this cell");
-            renderSymbol(e);
-            console.log(data.board);
-            ++data.turn;
+            playMove(e);
+            console.log(`this is turn ${data.turn}`);
         });
     })
     
-    function renderSymbol(e){
-        if(!data.gameOver){
-            e.target.textContent = data.symbol;
-            let id = e.target.id;
-            data.board.splice(id,1,data.symbol);
-            data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
-            checkWin(data);
-        }
+    // Hacer una jugada
+
+
+    const playMove = (e)=>{
+        if (data.gameOver) return;
+        renderOnGameBoard(e)
+        changePlayer(data)
+        checkWin(data);
     }
 
-    // Comparar valores de cada condicion con los arrays
+    //Renderizar
+
+    function renderOnGameBoard(e){
+        let id = e.target.id;
+        e.target.textContent = data.symbol;
+        data.board.splice(id,1,data.symbol);
+    }
+
+    // Cambiar jugador por turno
+
+    function changePlayer(data){
+        if (data.contrincant === "Human"){
+            data.symbol == "X" ? data.symbol = "0" : data.symbol = "X";
+        }
+
+        if (data.contrincant === "")
+
+        ++data.turn;
+    }
+
+
+
+
+    // Comparar valores de cada condicion con las condiciones de WIN
 
     const checkWin = (data)=>{
         let result = false;
+        if(data.turn > 8) return console.log("Tie");
+
         winningCombos.forEach(condition=>{
-            if(data.board[condition[0]] === data.board[condition[1]] && data.board[condition[1]] === data.board[condition[2]]){
+            if(data.board[condition[0]] === data.board[condition[1]] && 
+                data.board[condition[1]] === data.board[condition[2]]){
                 console.log("win");
                 result = true;
                 data.gameOver = true;
