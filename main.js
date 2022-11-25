@@ -4,7 +4,7 @@
 
     En general:
 
-    1) Se escoge si van a jugar dos personas o una persona contra la maquina  --DONE
+    1) Se escoge si van a jugar dos personas o una persona contra la maquina  -- DONE
 
     2) El primer jugador recibe la "X" y el segundo la "O"  -- DONE
 
@@ -116,34 +116,28 @@ const game = (()=>{
     }
 
     const EasyAi = ()=>{
+
         const chooseRandom = () => {
             let value = Math.floor(Math.random() * 9);
             return value;
         }
 
         let AiChoice = chooseRandom();
+        let board = data.board[AiChoice];
+        let writeOnArray = true;
 
-/*         while(data.board[AiChoice] == "X" && data.board[AiChoice] == "O"){
-            AiChoice = chooseRandom();
-        }
-        if(data.board[AiChoice] != "X" && data.board[AiChoice] != "O"){
-            data.board.splice(AiChoice,1,"O");
-            cols[AiChoice].textContent = "O";
-        } */
-        
-
-        // Compare all data.board values with aichoice, if it finds it replace it and render on page.
-
-        data.board.forEach((value)=>{
-            if(value === AiChoice){
+        while(writeOnArray){
+            if(isNaN(board) && cols[AiChoice] != ""){
+                AiChoice = chooseRandom();
+                board = data.board[AiChoice];
+            }
+            else {
                 data.board.splice(AiChoice,1,"O");
                 cols[AiChoice].textContent = "O";
+                writeOnArray = false;
             }
-            else if(value !== AiChoice){
-                return
-            }
-        })
-
+            
+        }
     }
 
 
